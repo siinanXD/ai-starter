@@ -1,0 +1,89 @@
+{
+  "suite": "analyze",
+  "description": "Deterministic structured-output contract for the analyze slice. No paid model calls.",
+  "cases": [
+    {
+      "id": "billing-overdue-invoice",
+      "input": "Customer asks whether an invoice is overdue.",
+      "checks": [
+        {"kind": "json_path", "value": "summary"},
+        {"kind": "json_path", "value": "category", "expected": "billing"},
+        {"kind": "json_path", "value": "confidence"},
+        {"kind": "json_path", "value": "suggested_action"},
+        {"kind": "regex", "value": "\"summary\"\\s*:\\s*\"[^\"]+\""},
+        {"kind": "regex", "value": "\"suggested_action\"\\s*:\\s*\"[^\"]+\""},
+        {"kind": "regex", "value": "\"confidence\"\\s*:\\s*(0(\\.\\d+)?|1(\\.0+)?)"}
+      ],
+      "tags": ["billing", "contract"]
+    },
+    {
+      "id": "billing-refund",
+      "input": "Please issue a refund for last month's payment.",
+      "checks": [
+        {"kind": "json_path", "value": "category", "expected": "billing"},
+        {"kind": "json_path", "value": "summary"},
+        {"kind": "json_path", "value": "suggested_action"},
+        {"kind": "regex", "value": "\"confidence\"\\s*:\\s*(0(\\.\\d+)?|1(\\.0+)?)"}
+      ],
+      "tags": ["billing"]
+    },
+    {
+      "id": "support-login",
+      "input": "I cannot login to my account after the update.",
+      "checks": [
+        {"kind": "json_path", "value": "category", "expected": "support"},
+        {"kind": "json_path", "value": "summary"},
+        {"kind": "json_path", "value": "suggested_action"}
+      ],
+      "tags": ["support"]
+    },
+    {
+      "id": "support-password",
+      "input": "I need a password reset for the dashboard.",
+      "checks": [
+        {"kind": "json_path", "value": "category", "expected": "support"},
+        {"kind": "json_path", "value": "confidence"}
+      ],
+      "tags": ["support"]
+    },
+    {
+      "id": "sales-pricing",
+      "input": "What is the pricing for the team plan?",
+      "checks": [
+        {"kind": "json_path", "value": "category", "expected": "sales"},
+        {"kind": "json_path", "value": "summary"},
+        {"kind": "json_path", "value": "suggested_action"}
+      ],
+      "tags": ["sales"]
+    },
+    {
+      "id": "sales-demo",
+      "input": "Can we schedule a demo for our leadership team?",
+      "checks": [
+        {"kind": "json_path", "value": "category", "expected": "sales"},
+        {"kind": "json_path", "value": "summary"}
+      ],
+      "tags": ["sales"]
+    },
+    {
+      "id": "legal-nda",
+      "input": "Please review this NDA before we sign.",
+      "checks": [
+        {"kind": "json_path", "value": "category", "expected": "legal"},
+        {"kind": "json_path", "value": "suggested_action"}
+      ],
+      "tags": ["legal"]
+    },
+    {
+      "id": "other-unrelated",
+      "input": "What is the weather like in Berlin tomorrow?",
+      "checks": [
+        {"kind": "json_path", "value": "category", "expected": "other"},
+        {"kind": "json_path", "value": "summary"},
+        {"kind": "json_path", "value": "suggested_action"},
+        {"kind": "regex", "value": "\"confidence\"\\s*:\\s*(0(\\.\\d+)?|1(\\.0+)?)"}
+      ],
+      "tags": ["other"]
+    }
+  ]
+}
