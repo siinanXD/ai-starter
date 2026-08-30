@@ -1,0 +1,233 @@
+{
+  "suite": "analyze",
+  "started_at": "2026-08-30T16:45:55.288365+00:00",
+  "providers": [
+    null
+  ],
+  "cases": 8,
+  "generation_score": 1.0,
+  "retrieval_score": null,
+  "error_rate": 0.0,
+  "cost_eur": 0.0,
+  "duration_ms": 0,
+  "per_provider": {
+    "default": {
+      "generation": 1.0,
+      "retrieval": null,
+      "error_rate": 0.0,
+      "cases": 8,
+      "cost_eur": 0.0
+    }
+  },
+  "results": [
+    {
+      "case_id": "billing-overdue-invoice",
+      "provider": null,
+      "status": "ok",
+      "generation": {
+        "score": 1.0,
+        "passed": 7,
+        "total": 7,
+        "failures": []
+      },
+      "retrieval": {
+        "score": null,
+        "recall": null,
+        "precision": null,
+        "mrr": null,
+        "missing": []
+      },
+      "output": "{\"summary\":\"The message is about billing or payment.\",\"category\":\"billing\",\"confidence\":0.86,\"suggested_action\":\"Review the invoice or payment record and reply with the status.\"}",
+      "error": "",
+      "cost_eur": 0.0,
+      "latency_ms": 0,
+      "weight": 1.0,
+      "tags": [
+        "billing",
+        "contract"
+      ]
+    },
+    {
+      "case_id": "billing-refund",
+      "provider": null,
+      "status": "ok",
+      "generation": {
+        "score": 1.0,
+        "passed": 4,
+        "total": 4,
+        "failures": []
+      },
+      "retrieval": {
+        "score": null,
+        "recall": null,
+        "precision": null,
+        "mrr": null,
+        "missing": []
+      },
+      "output": "{\"summary\":\"The message is about billing or payment.\",\"category\":\"billing\",\"confidence\":0.86,\"suggested_action\":\"Review the invoice or payment record and reply with the status.\"}",
+      "error": "",
+      "cost_eur": 0.0,
+      "latency_ms": 0,
+      "weight": 1.0,
+      "tags": [
+        "billing"
+      ]
+    },
+    {
+      "case_id": "support-login",
+      "provider": null,
+      "status": "ok",
+      "generation": {
+        "score": 1.0,
+        "passed": 3,
+        "total": 3,
+        "failures": []
+      },
+      "retrieval": {
+        "score": null,
+        "recall": null,
+        "precision": null,
+        "mrr": null,
+        "missing": []
+      },
+      "output": "{\"summary\":\"The message is a product support request.\",\"category\":\"support\",\"confidence\":0.86,\"suggested_action\":\"Open a support ticket and ask for the account identifier.\"}",
+      "error": "",
+      "cost_eur": 0.0,
+      "latency_ms": 0,
+      "weight": 1.0,
+      "tags": [
+        "support"
+      ]
+    },
+    {
+      "case_id": "support-password",
+      "provider": null,
+      "status": "ok",
+      "generation": {
+        "score": 1.0,
+        "passed": 2,
+        "total": 2,
+        "failures": []
+      },
+      "retrieval": {
+        "score": null,
+        "recall": null,
+        "precision": null,
+        "mrr": null,
+        "missing": []
+      },
+      "output": "{\"summary\":\"The message is a product support request.\",\"category\":\"support\",\"confidence\":0.86,\"suggested_action\":\"Open a support ticket and ask for the account identifier.\"}",
+      "error": "",
+      "cost_eur": 0.0,
+      "latency_ms": 0,
+      "weight": 1.0,
+      "tags": [
+        "support"
+      ]
+    },
+    {
+      "case_id": "sales-pricing",
+      "provider": null,
+      "status": "ok",
+      "generation": {
+        "score": 1.0,
+        "passed": 3,
+        "total": 3,
+        "failures": []
+      },
+      "retrieval": {
+        "score": null,
+        "recall": null,
+        "precision": null,
+        "mrr": null,
+        "missing": []
+      },
+      "output": "{\"summary\":\"The message is a sales or pricing inquiry.\",\"category\":\"sales\",\"confidence\":0.86,\"suggested_action\":\"Share the relevant plan details and offer a follow-up call.\"}",
+      "error": "",
+      "cost_eur": 0.0,
+      "latency_ms": 0,
+      "weight": 1.0,
+      "tags": [
+        "sales"
+      ]
+    },
+    {
+      "case_id": "sales-demo",
+      "provider": null,
+      "status": "ok",
+      "generation": {
+        "score": 1.0,
+        "passed": 2,
+        "total": 2,
+        "failures": []
+      },
+      "retrieval": {
+        "score": null,
+        "recall": null,
+        "precision": null,
+        "mrr": null,
+        "missing": []
+      },
+      "output": "{\"summary\":\"The message is a sales or pricing inquiry.\",\"category\":\"sales\",\"confidence\":0.86,\"suggested_action\":\"Share the relevant plan details and offer a follow-up call.\"}",
+      "error": "",
+      "cost_eur": 0.0,
+      "latency_ms": 0,
+      "weight": 1.0,
+      "tags": [
+        "sales"
+      ]
+    },
+    {
+      "case_id": "legal-nda",
+      "provider": null,
+      "status": "ok",
+      "generation": {
+        "score": 1.0,
+        "passed": 2,
+        "total": 2,
+        "failures": []
+      },
+      "retrieval": {
+        "score": null,
+        "recall": null,
+        "precision": null,
+        "mrr": null,
+        "missing": []
+      },
+      "output": "{\"summary\":\"The message needs a legal review.\",\"category\":\"legal\",\"confidence\":0.86,\"suggested_action\":\"Route the request to legal before making a commitment.\"}",
+      "error": "",
+      "cost_eur": 0.0,
+      "latency_ms": 0,
+      "weight": 1.0,
+      "tags": [
+        "legal"
+      ]
+    },
+    {
+      "case_id": "other-unrelated",
+      "provider": null,
+      "status": "ok",
+      "generation": {
+        "score": 1.0,
+        "passed": 4,
+        "total": 4,
+        "failures": []
+      },
+      "retrieval": {
+        "score": null,
+        "recall": null,
+        "precision": null,
+        "mrr": null,
+        "missing": []
+      },
+      "output": "{\"summary\":\"The message does not match a more specific category.\",\"category\":\"other\",\"confidence\":0.55,\"suggested_action\":\"Ask the customer for one clarifying sentence.\"}",
+      "error": "",
+      "cost_eur": 0.0,
+      "latency_ms": 0,
+      "weight": 1.0,
+      "tags": [
+        "other"
+      ]
+    }
+  ]
+}
