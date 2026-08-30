@@ -14,4 +14,6 @@ Next.js form
 
 `ai-core` owns provider, retry, structured output, redaction, and optional Langfuse. This repo does not reimplement those.
 
-`agent-eval-harness` owns scoring and the regression gate. This repo only adds a suite and a thin target.
+PostgreSQL stores metadata only: hash, category, confidence, model, tokens, cost, latency. Model free-text (`summary`, `suggested_action`) is returned to the client and is not persisted.
+
+`agent-eval-harness` owns scoring and the regression gate. The deterministic target calls `analyze_text` with a fake provider.

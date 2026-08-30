@@ -1,12 +1,19 @@
+from functools import lru_cache
+
 from ai_core import LLMProvider, ModelPricing, OpenAIProvider, build_openai_client
 
 from app.core.settings import get_settings
 
 
+class OpenAINotConfiguredError(Exception):
+    """OPENAI_API_KEY is missing. The app can still serve health checks."""
+
+
+@lru_cache
 def get_provider() -> LLMProvider:
     settings = get_settings()
     if not settings.openai_api_key:
-        raise RuntimeError("OPENAI_API_KEY is not set")
+        raise OpenAINotConfiguredError
     pricing = None
     if (
         settings.openai_input_usd_per_mtok is not None

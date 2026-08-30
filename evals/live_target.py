@@ -5,29 +5,25 @@ from __future__ import annotations
 import asyncio
 import os
 
-from ai_core import OpenAIProvider, build_openai_client, wrap_untrusted
-
-from app.schemas.analyze import AnalysisResult
-from app.services.analyze import SYSTEM_PROMPT
+from app.core.dependencies import get_provider
+from app.core.settings import get_settings
+from app.services.analyze import analyze_text
+from evals.db import memory_session
 
 
 def build_target():
     if os.getenv("RUN_OPENAI_EVAL") != "1":
         raise RuntimeError("refusing live OpenAI evals without RUN_OPENAI_EVAL=1")
-    api_key = os.environ["OPENAI_API_KEY"]
-    model = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
-    provider = OpenAIProvider(
-        build_openai_client(api_key, timeout_seconds=30),
-        model,
-    )
+    get_settings.cache_clear()
+    get_provider.cache_clear()
+    provider = get_provider()
 
     def target(case, _provider):
-        wrapped = wrap_untrusted(case.input, "eval_text")
-        generation = asyncio.run(
-            provider.complete_structured(SYSTEM_PROMPT, wrapped, AnalysisResult)
-        )
-        if not isinstance(generation.parsed, AnalysisResult):
-            raise RuntimeError("live eval received no structured result")
-        return generation.parsed.model_dump_json()
+        session = memory_session()
+        try:
+            result = asyncio.run(analyze_text(session, provider, case.input))
+            return result.model_dump_json()
+        finally:
+            session.close()
 
     return target

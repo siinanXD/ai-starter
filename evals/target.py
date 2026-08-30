@@ -1,8 +1,14 @@
-"""Deterministic harness target. No paid API calls."""
+"""Deterministic harness target. Calls analyze_text. No paid API calls."""
 
 from __future__ import annotations
 
+import asyncio
+
+from ai_core import CostEstimate, Generation, Usage
+
 from app.schemas.analyze import AnalysisResult, Category
+from app.services.analyze import analyze_text
+from evals.db import memory_session
 
 _RULES: tuple[tuple[tuple[str, ...], Category, str, str], ...] = (
     (
@@ -50,8 +56,35 @@ def classify(text: str) -> AnalysisResult:
     )
 
 
+class _DeterministicProvider:
+    provider = "openai"
+    model = "eval-fake"
+
+    async def complete(self, system: str, user: str) -> Generation:
+        raise AssertionError("complete should not be used")
+
+    async def complete_structured(self, system: str, user: str, schema: type) -> Generation:
+        parsed = classify(user)
+        return Generation(
+            text=parsed.model_dump_json(),
+            provider=self.provider,
+            model=self.model,
+            latency_ms=1,
+            usage=Usage(input_tokens=1, output_tokens=1, total_tokens=2),
+            cost=CostEstimate(self.model, 1, 1, None, "unknown"),
+            parsed=parsed,
+        )
+
+
 def build_target():
+    provider = _DeterministicProvider()
+
     def target(case, _provider):
-        return classify(case.input).model_dump_json()
+        session = memory_session()
+        try:
+            result = asyncio.run(analyze_text(session, provider, case.input))
+            return result.model_dump_json()
+        finally:
+            session.close()
 
     return target

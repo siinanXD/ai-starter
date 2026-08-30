@@ -2,7 +2,7 @@
 
 Runnable starter for a simple AI customer project.
 
-One page collects a short message. FastAPI validates it, `ai-core` runs a structured OpenAI call, PostgreSQL stores metadata (never the raw text), and the UI shows the result.
+One page collects a short message. FastAPI validates it, `ai-core` runs a structured OpenAI call, PostgreSQL stores metadata only (hash, category, confidence, model, tokens — never raw input or model free-text), and the UI shows the result.
 
 ## 1. Clone
 
@@ -101,11 +101,9 @@ See `docs/ARCHITECTURE.md`.
 
 See `docs/RAILWAY.md`. Dockerfiles exist for `web` and `api`. This repository does not deploy.
 
-Pinned runtime libraries:
+Pinned runtime libraries (both public):
 
-- `ai-core` @ `9fb7f568640346d7ba31eeb6e4d366f6a0e022f1` (private)
-- `agent-eval-harness` @ `4b2cb9b7839da8970bdbf271769cde41d7258b60` (public)
+- `ai-core` @ `9fb7f568640346d7ba31eeb6e4d366f6a0e022f1`
+- `agent-eval-harness` @ `4b2cb9b7839da8970bdbf271769cde41d7258b60`
 
-Local API install works if your GitHub account can read `siinanXD/ai-core`.
-
-GitHub Actions cannot clone that private repo with the default `GITHUB_TOKEN`. Until `ai-core` is public, add a repo secret `AI_CORE_READ_TOKEN` (read-only PAT) on `siinanXD/ai-starter`.
+`pip install -e ".[dev]"` from `apps/api` is enough. The API image installs `git` so the same pin works in Docker/Railway.
