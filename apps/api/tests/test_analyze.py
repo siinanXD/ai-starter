@@ -57,16 +57,21 @@ def test_analyze_valid(client: TestClient, fake_provider: FakeProvider) -> None:
 def test_analyze_invalid_empty_text(client: TestClient) -> None:
     response = client.post("/api/v1/analyze", json={"text": "   "})
     assert response.status_code == 422
+    assert response.json() == {"detail": "invalid_request"}
 
 
 def test_analyze_invalid_missing_text(client: TestClient) -> None:
     response = client.post("/api/v1/analyze", json={})
     assert response.status_code == 422
+    assert response.json() == {"detail": "invalid_request"}
 
 
-def test_analyze_invalid_too_long(client: TestClient) -> None:
-    response = client.post("/api/v1/analyze", json={"text": "x" * 4001})
+def test_analyze_invalid_too_long_does_not_echo_input(client: TestClient) -> None:
+    secret = "SECRETCUSTOMERDATA" * 230
+    response = client.post("/api/v1/analyze", json={"text": secret})
     assert response.status_code == 422
+    assert response.json() == {"detail": "invalid_request"}
+    assert "SECRETCUSTOMERDATA" not in response.text
 
 
 def test_provider_failure(client: TestClient, generation) -> None:
@@ -185,6 +190,26 @@ def test_echoed_customer_text_is_not_persisted(
     dumped = _row_dump(row)
     assert UNIQUE not in dumped
     assert "sk-test-secret" not in dumped
+
+
+def test_database_error_returns_503(client: TestClient) -> None:
+    from sqlalchemy.exc import OperationalError
+
+    class BoomSession:
+        def add(self, *_args, **_kwargs):
+            raise OperationalError("INSERT", {}, Exception("down"))
+
+        def close(self) -> None:
+            return None
+
+    def _db():
+        yield BoomSession()
+
+    app.dependency_overrides[get_db] = _db
+    response = client.post("/api/v1/analyze", json={"text": UNIQUE})
+    assert response.status_code == 503
+    assert response.json() == {"detail": "database_unavailable"}
+    assert UNIQUE not in response.text
 
 
 def test_provider_error_type_is_ai_core() -> None:
