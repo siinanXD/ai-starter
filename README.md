@@ -11,13 +11,26 @@ git clone https://github.com/siinanXD/ai-starter.git
 cd ai-starter
 ```
 
-## 2. Env setup
+## 2. Secrets and local environment
+
+Preferred setup: keep user-managed application secrets in **Infisical** and inject them at runtime. See `docs/SECRETS.md`.
+
+For a project created from this starter:
+
+```bash
+infisical login
+infisical init
+```
+
+Then run the API with the `dev` secrets instead of copying `.env` files between devices. The generic starter intentionally does not commit a fixed `.infisical.json`, because each downstream project should connect to its own Infisical project.
+
+`.env.example` remains the safe variable reference and fallback for temporary local demos:
 
 ```bash
 cp .env.example .env
 ```
 
-Set `OPENAI_API_KEY` for a live analyze call. Leave Langfuse unset unless you want traces.
+Set `OPENAI_API_KEY` for a live analyze call. Leave Langfuse unset unless you want traces. Never commit or synchronize the resulting `.env` file.
 
 ## 3. Start PostgreSQL
 
@@ -38,7 +51,13 @@ alembic upgrade head
 
 ## 5. Start FastAPI
 
-From `apps/api`:
+From `apps/api`, either use variables already present in your shell or inject Infisical secrets:
+
+```powershell
+infisical run --env=dev --path=/common --path=/api --project-config-dir=../.. -- uvicorn app.main:app --reload --port 8000
+```
+
+Without Infisical, the existing command still works when the environment is configured locally:
 
 ```bash
 uvicorn app.main:app --reload --port 8000
@@ -54,7 +73,7 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3000. The page posts to `NEXT_PUBLIC_API_URL` (default `http://localhost:8000`).
+Open http://localhost:3000. The page posts to `NEXT_PUBLIC_API_URL` (default `http://localhost:8000`). This value is public configuration, not a secret.
 
 ## 7. Tests
 
@@ -97,9 +116,16 @@ See `docs/ARCHITECTURE.md`.
 - `agent-eval-harness` is the only eval runner.
 - Compose runs PostgreSQL only.
 
-## 10. Railway
+## 10. Deployment
 
-See `docs/RAILWAY.md`. Dockerfiles exist for `web` and `api`. Both listen on Railway's `$PORT` (local fallbacks 8000 / 3000). This repository does not deploy.
+Default deployment split for projects created from this starter:
+
+- **Vercel** for `apps/web` (Next.js), including pull-request Preview Deployments.
+- **Railway** for `apps/api` and PostgreSQL.
+- `main` is the production branch; production deployment follows a human-reviewed merge.
+- User-managed runtime secrets should be synced from Infisical where practical; platform-generated values remain owned by the platform.
+
+See `docs/DEPLOYMENT.md`, `docs/SECRETS.md`, and `docs/RAILWAY.md`.
 
 The analyze endpoint is unauthenticated and spends the OpenAI key. Do not expose it publicly without a gateway; details are in `docs/RAILWAY.md`.
 
