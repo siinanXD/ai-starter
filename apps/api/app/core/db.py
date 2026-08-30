@@ -13,7 +13,7 @@ class Base(DeclarativeBase):
 def _connect_args(url: str) -> dict[str, object]:
     if url.startswith("sqlite"):
         return {"check_same_thread": False}
-    return {}
+    return {"connect_timeout": 5}
 
 
 _settings = get_settings()

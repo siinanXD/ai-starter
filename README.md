@@ -99,7 +99,9 @@ See `docs/ARCHITECTURE.md`.
 
 ## 10. Railway
 
-See `docs/RAILWAY.md`. Dockerfiles exist for `web` and `api`. This repository does not deploy.
+See `docs/RAILWAY.md`. Dockerfiles exist for `web` and `api`. Both listen on Railway's `$PORT` (local fallbacks 8000 / 3000). This repository does not deploy.
+
+The analyze endpoint is unauthenticated and spends the OpenAI key. Do not expose it publicly without a gateway; details are in `docs/RAILWAY.md`.
 
 Pinned runtime libraries (both public):
 

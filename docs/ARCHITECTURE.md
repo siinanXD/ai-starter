@@ -16,4 +16,4 @@ Next.js form
 
 PostgreSQL stores metadata only: hash, category, confidence, model, tokens, cost, latency. Model free-text (`summary`, `suggested_action`) is returned to the client and is not persisted.
 
-`agent-eval-harness` owns scoring and the regression gate. The deterministic target calls `analyze_text` with a fake provider.
+`agent-eval-harness` owns scoring and the regression gate. The deterministic target calls `analyze_text` with a fake provider. Stored run files under `.evals/` contain the full analyze response, including model free-text — do not commit live runs of real customer messages.

@@ -9,8 +9,8 @@ Create three Railway services from the same GitHub repo:
 | Service | Source | Root Directory | Notes |
 | --- | --- | --- | --- |
 | postgres | Railway PostgreSQL plugin | — | Railway's `DATABASE_URL` (`postgresql://…`) is rewritten to `postgresql+psycopg://` at startup |
-| api | `Dockerfile` | `apps/api` | Installs `git` so `ai-core` can be fetched. Runs Alembic then uvicorn. Two replicas can race on the Alembic lock. |
-| web | `Dockerfile` | `apps/web` | Set `NEXT_PUBLIC_API_URL` to the public API URL **at build time** |
+| api | `Dockerfile` | `apps/api` | Installs `git` so `ai-core` can be fetched. Listens on `$PORT` (fallback 8000). Runs Alembic then uvicorn. Two replicas can race on the Alembic lock. |
+| web | `Dockerfile` | `apps/web` | Listens on `$PORT` (fallback 3000) at `0.0.0.0`. Set `NEXT_PUBLIC_API_URL` to the public API URL **at build time** |
 
 API environment:
 

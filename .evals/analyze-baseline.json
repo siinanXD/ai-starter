@@ -1,6 +1,6 @@
 {
   "suite": "analyze",
-  "started_at": "2026-08-30T16:45:55.288365+00:00",
+  "started_at": "2026-08-30T18:04:32.716949+00:00",
   "providers": [
     null
   ],
@@ -9,7 +9,7 @@
   "retrieval_score": null,
   "error_rate": 0.0,
   "cost_eur": 0.0,
-  "duration_ms": 0,
+  "duration_ms": 55,
   "per_provider": {
     "default": {
       "generation": 1.0,
@@ -37,10 +37,10 @@
         "mrr": null,
         "missing": []
       },
-      "output": "{\"summary\":\"The message is about billing or payment.\",\"category\":\"billing\",\"confidence\":0.86,\"suggested_action\":\"Review the invoice or payment record and reply with the status.\"}",
+      "output": "{\"id\":\"3528e9ab-ceff-4015-8af6-84015b470cd1\",\"summary\":\"The message is about billing or payment.\",\"category\":\"billing\",\"confidence\":0.86,\"suggested_action\":\"Review the invoice or payment record and reply with the status.\",\"model\":\"eval-fake\",\"latency_ms\":1,\"input_tokens\":1,\"output_tokens\":1,\"estimated_cost_usd\":null,\"created_at\":\"2026-08-30T18:04:32\"}",
       "error": "",
       "cost_eur": 0.0,
-      "latency_ms": 0,
+      "latency_ms": 19,
       "weight": 1.0,
       "tags": [
         "billing",
@@ -64,10 +64,10 @@
         "mrr": null,
         "missing": []
       },
-      "output": "{\"summary\":\"The message is about billing or payment.\",\"category\":\"billing\",\"confidence\":0.86,\"suggested_action\":\"Review the invoice or payment record and reply with the status.\"}",
+      "output": "{\"id\":\"d060aea6-f877-4b3e-bd7e-b81347c5608c\",\"summary\":\"The message is about billing or payment.\",\"category\":\"billing\",\"confidence\":0.86,\"suggested_action\":\"Review the invoice or payment record and reply with the status.\",\"model\":\"eval-fake\",\"latency_ms\":1,\"input_tokens\":1,\"output_tokens\":1,\"estimated_cost_usd\":null,\"created_at\":\"2026-08-30T18:04:32\"}",
       "error": "",
       "cost_eur": 0.0,
-      "latency_ms": 0,
+      "latency_ms": 5,
       "weight": 1.0,
       "tags": [
         "billing"
@@ -90,10 +90,10 @@
         "mrr": null,
         "missing": []
       },
-      "output": "{\"summary\":\"The message is a product support request.\",\"category\":\"support\",\"confidence\":0.86,\"suggested_action\":\"Open a support ticket and ask for the account identifier.\"}",
+      "output": "{\"id\":\"daeebcb4-8c30-48b4-959c-6e55d97a01b2\",\"summary\":\"The message is a product support request.\",\"category\":\"support\",\"confidence\":0.86,\"suggested_action\":\"Open a support ticket and ask for the account identifier.\",\"model\":\"eval-fake\",\"latency_ms\":1,\"input_tokens\":1,\"output_tokens\":1,\"estimated_cost_usd\":null,\"created_at\":\"2026-08-30T18:04:32\"}",
       "error": "",
       "cost_eur": 0.0,
-      "latency_ms": 0,
+      "latency_ms": 4,
       "weight": 1.0,
       "tags": [
         "support"
@@ -116,10 +116,10 @@
         "mrr": null,
         "missing": []
       },
-      "output": "{\"summary\":\"The message is a product support request.\",\"category\":\"support\",\"confidence\":0.86,\"suggested_action\":\"Open a support ticket and ask for the account identifier.\"}",
+      "output": "{\"id\":\"62984dad-0dfe-47ac-a243-f5a9bd1e787b\",\"summary\":\"The message is a product support request.\",\"category\":\"support\",\"confidence\":0.86,\"suggested_action\":\"Open a support ticket and ask for the account identifier.\",\"model\":\"eval-fake\",\"latency_ms\":1,\"input_tokens\":1,\"output_tokens\":1,\"estimated_cost_usd\":null,\"created_at\":\"2026-08-30T18:04:32\"}",
       "error": "",
       "cost_eur": 0.0,
-      "latency_ms": 0,
+      "latency_ms": 4,
       "weight": 1.0,
       "tags": [
         "support"
@@ -142,10 +142,10 @@
         "mrr": null,
         "missing": []
       },
-      "output": "{\"summary\":\"The message is a sales or pricing inquiry.\",\"category\":\"sales\",\"confidence\":0.86,\"suggested_action\":\"Share the relevant plan details and offer a follow-up call.\"}",
+      "output": "{\"id\":\"12dfe411-558e-4864-b4b6-80c39ca916d0\",\"summary\":\"The message is a sales or pricing inquiry.\",\"category\":\"sales\",\"confidence\":0.86,\"suggested_action\":\"Share the relevant plan details and offer a follow-up call.\",\"model\":\"eval-fake\",\"latency_ms\":1,\"input_tokens\":1,\"output_tokens\":1,\"estimated_cost_usd\":null,\"created_at\":\"2026-08-30T18:04:32\"}",
       "error": "",
       "cost_eur": 0.0,
-      "latency_ms": 0,
+      "latency_ms": 4,
       "weight": 1.0,
       "tags": [
         "sales"
@@ -168,10 +168,10 @@
         "mrr": null,
         "missing": []
       },
-      "output": "{\"summary\":\"The message is a sales or pricing inquiry.\",\"category\":\"sales\",\"confidence\":0.86,\"suggested_action\":\"Share the relevant plan details and offer a follow-up call.\"}",
+      "output": "{\"id\":\"8954e1e4-4fb1-477a-848d-4b7554fe0725\",\"summary\":\"The message is a sales or pricing inquiry.\",\"category\":\"sales\",\"confidence\":0.86,\"suggested_action\":\"Share the relevant plan details and offer a follow-up call.\",\"model\":\"eval-fake\",\"latency_ms\":1,\"input_tokens\":1,\"output_tokens\":1,\"estimated_cost_usd\":null,\"created_at\":\"2026-08-30T18:04:32\"}",
       "error": "",
       "cost_eur": 0.0,
-      "latency_ms": 0,
+      "latency_ms": 5,
       "weight": 1.0,
       "tags": [
         "sales"
@@ -194,10 +194,10 @@
         "mrr": null,
         "missing": []
       },
-      "output": "{\"summary\":\"The message needs a legal review.\",\"category\":\"legal\",\"confidence\":0.86,\"suggested_action\":\"Route the request to legal before making a commitment.\"}",
+      "output": "{\"id\":\"7a61c6d6-c467-476a-99de-d39803c2f761\",\"summary\":\"The message needs a legal review.\",\"category\":\"legal\",\"confidence\":0.86,\"suggested_action\":\"Route the request to legal before making a commitment.\",\"model\":\"eval-fake\",\"latency_ms\":1,\"input_tokens\":1,\"output_tokens\":1,\"estimated_cost_usd\":null,\"created_at\":\"2026-08-30T18:04:32\"}",
       "error": "",
       "cost_eur": 0.0,
-      "latency_ms": 0,
+      "latency_ms": 5,
       "weight": 1.0,
       "tags": [
         "legal"
@@ -220,10 +220,10 @@
         "mrr": null,
         "missing": []
       },
-      "output": "{\"summary\":\"The message does not match a more specific category.\",\"category\":\"other\",\"confidence\":0.55,\"suggested_action\":\"Ask the customer for one clarifying sentence.\"}",
+      "output": "{\"id\":\"0848b2f3-4380-4a1c-a8f7-60bfef5cebb8\",\"summary\":\"The message does not match a more specific category.\",\"category\":\"other\",\"confidence\":0.55,\"suggested_action\":\"Ask the customer for one clarifying sentence.\",\"model\":\"eval-fake\",\"latency_ms\":1,\"input_tokens\":1,\"output_tokens\":1,\"estimated_cost_usd\":null,\"created_at\":\"2026-08-30T18:04:32\"}",
       "error": "",
       "cost_eur": 0.0,
-      "latency_ms": 0,
+      "latency_ms": 6,
       "weight": 1.0,
       "tags": [
         "other"

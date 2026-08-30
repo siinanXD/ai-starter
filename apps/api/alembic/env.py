@@ -3,7 +3,7 @@ from logging.config import fileConfig
 from alembic import context
 from sqlalchemy import engine_from_config, pool
 
-from app.core.db import Base
+from app.core.db import Base, _connect_args
 from app.core.settings import get_settings
 from app.models import AnalysisRun  # noqa: F401
 
@@ -23,10 +23,12 @@ def run_migrations_offline() -> None:
 
 
 def run_migrations_online() -> None:
+    url = config.get_main_option("sqlalchemy.url") or ""
     connectable = engine_from_config(
         config.get_section(config.config_ini_section, {}),
         prefix="sqlalchemy.",
         poolclass=pool.NullPool,
+        connect_args=_connect_args(url),
     )
     with connectable.connect() as connection:
         context.configure(connection=connection, target_metadata=target_metadata)
