@@ -24,3 +24,5 @@ Web environment:
 - `NEXT_PUBLIC_API_URL`
 
 No Redis, workers, or extra datastores.
+
+The API image installs `ai-core` from the private GitHub repo. Railway needs credentials that can read `siinanXD/ai-core`, or `ai-core` must be public.

@@ -103,5 +103,9 @@ See `docs/RAILWAY.md`. Dockerfiles exist for `web` and `api`. This repository do
 
 Pinned runtime libraries:
 
-- `ai-core` @ `9fb7f568640346d7ba31eeb6e4d366f6a0e022f1`
-- `agent-eval-harness` @ `4b2cb9b7839da8970bdbf271769cde41d7258b60`
+- `ai-core` @ `9fb7f568640346d7ba31eeb6e4d366f6a0e022f1` (private)
+- `agent-eval-harness` @ `4b2cb9b7839da8970bdbf271769cde41d7258b60` (public)
+
+Local API install works if your GitHub account can read `siinanXD/ai-core`.
+
+GitHub Actions cannot clone that private repo with the default `GITHUB_TOKEN`. Until `ai-core` is public, add a repo secret `AI_CORE_READ_TOKEN` (read-only PAT) on `siinanXD/ai-starter`.

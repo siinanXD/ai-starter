@@ -15,6 +15,7 @@ node_modules/
 out/
 *.tsbuildinfo
 
+.deps/
 .evals/*
 !.evals/.gitkeep
 !.evals/analyze-baseline.json
